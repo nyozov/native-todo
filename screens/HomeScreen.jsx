@@ -4,7 +4,6 @@ import tw from "tailwind-react-native-classnames";
 import NavOptions from "../components/NavOptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
-import { TextInput } from "react-native-web";
 import { useDispatch } from "react-redux";
 import { setDestination, setOrigin } from "../slices/navSlice";
 
@@ -28,15 +27,16 @@ const HomeScreen = () => {
           returnKeyType={"search"}
           enablePoweredByContainer={false}
           onPress={(data, details = null) => {
-            dispatch(setOrigin({
-              location: details.geometry.location,
-              description: data.description
-            }))
-            console.log(data)
-            console.log(details)
-            
-
-          }} 
+            dispatch(
+              setOrigin({
+                location: details.geometry.location,
+                description: data.description,
+              })
+            );
+            console.log(data);
+            console.log(details);
+            dispatch(setDestination(null));
+          }}
           fetchDetails={true}
           query={{
             key: GOOGLE_MAPS_APIKEY,
