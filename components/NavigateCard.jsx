@@ -6,6 +6,7 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from "react-redux";
 import { setDestination } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
+
 const NavigateCard = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -22,6 +23,7 @@ const NavigateCard = () => {
             minLength={2}
             nearbyPlacesAPI="GooglePlacesSearch"
             onPress={(data, details = null) => {
+              
               dispatch(
                 setDestination({
                   location: details.geometry.location,
